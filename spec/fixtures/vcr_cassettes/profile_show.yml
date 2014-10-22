@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sales14.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d?access_token=26e61d40dcb6a87aa3e9090e998fae92
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 22 Oct 2014 17:03:19 GMT
+      Server:
+      - nginx/1.6.2
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=31536000
+      - max-age=31536000; includeSubDomains;
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - c298d642-c1f4-481e-953b-5031d4600be6
+      X-Runtime:
+      - '0.087344'
+      Content-Length:
+      - '1677'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        j8f/AjJQ3/E7EQAA
+    http_version: 
+  recorded_at: Wed, 22 Oct 2014 17:03:19 GMT
+recorded_with: VCR 2.9.3

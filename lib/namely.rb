@@ -1,5 +1,12 @@
-require "namely/client"
+require "json"
+require "ostruct"
+require "rest_client"
+
 require "namely/improperly_configured_error"
+require "namely/no_such_model_error"
+
+require "namely/restful_model"
+require "namely/profile"
 require "namely/version"
 
 module Namely
