@@ -35,7 +35,7 @@ describe Namely::Profile do
 
   describe ".exists?" do
     it "returns true if a user exists" do
-      VCR.use_cassette("profile_show") do
+      VCR.use_cassette("profile_head") do
         profile_id = "20332458-c1fe-412f-bcb8-01622f04a35d"
 
         expect(Namely::Profile.exists?(profile_id)).to eq true
@@ -43,7 +43,7 @@ describe Namely::Profile do
     end
 
     it "returns false if a user doesn't exist" do
-      VCR.use_cassette("profile_show_missing") do
+      VCR.use_cassette("profile_head_missing") do
         expect(Namely::Profile.exists?("123456789")).to eq false
       end
     end

@@ -7,9 +7,9 @@ module Namely
     end
 
     def self.exists?(id)
-      find(id)
+      head("/#{endpoint}/#{id}")
       true
-    rescue NoSuchModelError
+    rescue RestClient::ResourceNotFound
       false
     end
 
@@ -34,6 +34,11 @@ module Namely
     def self.get(path, params = {})
       params.merge!(access_token: Namely.configuration.access_token)
       JSON.parse(RestClient.get(url(path), accept: :json, params: params))
+    end
+
+    def self.head(path, params = {})
+      params.merge!(access_token: Namely.configuration.access_token)
+      RestClient.head(url(path), accept: :json, params: params)
     end
   end
 end
