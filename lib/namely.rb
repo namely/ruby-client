@@ -5,6 +5,7 @@ require "rest_client"
 require "namely/improperly_configured_error"
 require "namely/no_such_model_error"
 
+require "namely/client"
 require "namely/restful_model"
 require "namely/profile"
 require "namely/version"
@@ -26,6 +27,10 @@ module Namely
     yield configuration
   end
 
+  def self.client
+    configuration.client
+  end
+
   class Configuration
     attr_writer :access_token, :site_name
 
@@ -35,6 +40,10 @@ module Namely
 
     def site_name
       @site_name || raise_missing_variable_error(:site_name)
+    end
+
+    def client
+      Namely::Client.new(access_token, site_name)
     end
 
     private
