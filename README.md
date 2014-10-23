@@ -24,22 +24,22 @@ Or install it yourself as:
 ## Usage
 
 You'll need to configure the gem to use your Namely account. Do this
-by setting the `access_token` and `site_name` variables in a
+by setting the `access_token` and `subdomain` variables in a
 configuration block:
 
 ```ruby
 Namely.configure do |config|
   config.access_token = "your_access_token"
-  config.site_name = "your-organization"
+  config.subdomain = "your-organization"
 end
 ```
 
 An access token can be obtained through your organization's Namely
 account.
 
-Your site name is just the subdomain that Namely associates with your
-organization. For example, if your account is at
-`http://your-organization.namely.com/`, your site name would be
+Namely associates a subdomain with your
+organization. organization. For example, if your account is at
+`http://your-organization.namely.com/`, your subdomain would be
 `"your-organization"`.
 
 In a Rails application this configuration belongs in

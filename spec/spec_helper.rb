@@ -6,7 +6,7 @@ require "vcr"
 require "webmock/rspec"
 
 TEST_ACCESS_TOKEN = "26e61d40dcb6a87aa3e9090e998fae92"
-TEST_SITE_NAME = "sales14"
+TEST_SUBDOMAIN = "sales14"
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
@@ -16,7 +16,7 @@ end
 def set_configuration!
   Namely.configure do |config|
     config.access_token = TEST_ACCESS_TOKEN
-    config.site_name = TEST_SITE_NAME
+    config.subdomain = TEST_SUBDOMAIN
   end
 end
 

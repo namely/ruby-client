@@ -6,7 +6,7 @@ describe Namely::ResourceGateway do
       access_token: Namely.configuration.access_token,
       endpoint: "profiles",
       resource_name: "profiles",
-      subdomain: Namely.configuration.site_name
+      subdomain: Namely.configuration.subdomain
     )
   end
 

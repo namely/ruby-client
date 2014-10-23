@@ -35,14 +35,14 @@ module Namely
   end
 
   class Configuration
-    attr_writer :access_token, :site_name
+    attr_writer :access_token, :subdomain
 
     def access_token
       @access_token || raise_missing_variable_error(:access_token)
     end
 
-    def site_name
-      @site_name || raise_missing_variable_error(:site_name)
+    def subdomain
+      @subdomain || raise_missing_variable_error(:subdomain)
     end
 
     def resource_gateway(resource_name, endpoint)
@@ -50,7 +50,7 @@ module Namely
         access_token: access_token,
         endpoint: endpoint,
         resource_name: resource_name,
-        subdomain: site_name
+        subdomain: subdomain
       )
     end
 

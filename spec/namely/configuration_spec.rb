@@ -9,14 +9,14 @@ describe Namely::Configuration do
     set_configuration!
   end
 
-  it "contains a site_name and access_token when those have been set" do
+  it "contains a subdomain and access_token when those have been set" do
     Namely.configure do |config|
       config.access_token = "my_token"
-      config.site_name = "my_site"
+      config.subdomain = "my_subdomain"
     end
 
     expect(Namely.configuration.access_token).to eq "my_token"
-    expect(Namely.configuration.site_name).to eq "my_site"
+    expect(Namely.configuration.subdomain).to eq "my_subdomain"
   end
 
   it "raises an error when the configuration block hasn't been run" do
@@ -28,6 +28,6 @@ describe Namely::Configuration do
     end
 
     expect { Namely.configuration.access_token }.to raise_error Namely::ImproperlyConfiguredError
-    expect { Namely.configuration.site_name }.to raise_error Namely::ImproperlyConfiguredError
+    expect { Namely.configuration.subdomain }.to raise_error Namely::ImproperlyConfiguredError
   end
 end
