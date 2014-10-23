@@ -1,11 +1,11 @@
 module Namely
-  class Profile < RestfulModel
+  class Field < RestfulModel
     def self.endpoint
-      "profiles"
+      "profiles/fields"
     end
 
     def self.resource_name
-      "profiles"
+      "fields"
     end
   end
 end

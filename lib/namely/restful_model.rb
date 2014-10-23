@@ -1,7 +1,7 @@
 module Namely
   class RestfulModel < OpenStruct
     def self.find(id)
-      new(client.json_show(endpoint, id))
+      new(client.json_show(endpoint, resource_name, id))
     rescue RestClient::ResourceNotFound
       raise NoSuchModelError, "Can't find a #{name} with id \"#{id}\""
     end
@@ -14,7 +14,7 @@ module Namely
     end
 
     def self.all
-      client.json_index(endpoint).map { |model| new(model) }
+      client.json_index(endpoint, resource_name).map { |model| new(model) }
     end
 
     private

@@ -5,12 +5,12 @@ module Namely
       @site_name = site_name
     end
 
-    def json_index(endpoint)
-      get("/#{endpoint}", limit: :all)[endpoint]
+    def json_index(endpoint, resource_name)
+      get("/#{endpoint}", limit: :all)[resource_name]
     end
 
-    def json_show(endpoint, id)
-      get("/#{endpoint}/#{id}")[endpoint].first
+    def json_show(endpoint, resource_name, id)
+      get("/#{endpoint}/#{id}")[resource_name].first
     end
 
     def show_head(endpoint, id)

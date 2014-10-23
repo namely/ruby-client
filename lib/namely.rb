@@ -8,7 +8,9 @@ require "namely/no_such_model_error"
 require "namely/client"
 require "namely/restful_model"
 require "namely/currency_type"
+require "namely/field"
 require "namely/profile"
+
 require "namely/version"
 
 module Namely
