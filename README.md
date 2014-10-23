@@ -47,9 +47,25 @@ In a Rails application this configuration belongs in
 
 ## Contributing
 
-1. [Fork it!](https://github.com/namely/ruby-client/fork)
+Wanna help out? Great! Here are a few resources that might help you
+started:
+
+* Documentation on [Namely's HTTP API]
+* Namely tries to stick to the [JSON API standard]. If we're seriously
+  deviating from it, that may well be a bug.
+* For coding style, we like [thoughtbot's style guide]
+
+Here's the process:
+
+1. [Fork it!]
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am "Add some feature"`). Be sure
    to include tests!
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+5. Create a new pull request. We'll review it and leave feedback for
+   you ASAP.
+
+[Namely's HTTP API]: http://namely.readme.io/v1/docs
+[thoughtbot's style guide]: https://github.com/thoughtbot/guides/tree/master/style
+[JSON API standard]: http://jsonapi.org/
+[Fork it!]: https://github.com/namely/ruby-client/fork
