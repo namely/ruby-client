@@ -30,8 +30,8 @@ module Namely
     yield configuration
   end
 
-  def self.resource_gateway
-    configuration.resource_gateway
+  def self.resource_gateway(resource_name, endpoint)
+    configuration.resource_gateway(resource_name, endpoint)
   end
 
   class Configuration
@@ -45,9 +45,11 @@ module Namely
       @site_name || raise_missing_variable_error(:site_name)
     end
 
-    def resource_gateway
+    def resource_gateway(resource_name, endpoint)
       Namely::ResourceGateway.new(
         access_token: access_token,
+        endpoint: endpoint,
+        resource_name: resource_name,
         subdomain: site_name
       )
     end

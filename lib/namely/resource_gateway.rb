@@ -2,24 +2,26 @@ module Namely
   class ResourceGateway
     def initialize(options)
       @access_token = options.fetch(:access_token)
+      @endpoint = options.fetch(:endpoint)
+      @resource_name = options.fetch(:resource_name)
       @subdomain = options.fetch(:subdomain)
     end
 
-    def json_index(endpoint, resource_name)
+    def json_index
       get("/#{endpoint}", limit: :all)[resource_name]
     end
 
-    def json_show(endpoint, resource_name, id)
+    def json_show(id)
       get("/#{endpoint}/#{id}")[resource_name].first
     end
 
-    def show_head(endpoint, id)
+    def show_head(id)
       head("/#{endpoint}/#{id}")
     end
 
     private
 
-    attr_reader :access_token, :subdomain
+    attr_reader :access_token, :endpoint, :resource_name, :subdomain
 
     def url(path)
       "https://#{subdomain}.namely.com/api/v1#{path}"
