@@ -22,5 +22,9 @@ module Namely
     def self.resource_gateway
       Namely.resource_gateway(resource_name, endpoint)
     end
+
+    def self.resource_name
+      endpoint.split("/").last
+    end
   end
 end
