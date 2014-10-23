@@ -7,7 +7,9 @@ describe Namely::Field do
         fields = Namely::Field.all
 
         expect(fields).not_to be_empty
-        expect(fields).to be_all { |field| field.class == Namely::Field }
+        fields.each do |field|
+          expect(field).to be_a Namely::Field
+        end
       end
     end
   end
