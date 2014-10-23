@@ -1,8 +1,8 @@
 module Namely
-  class Client
-    def initialize(access_token, site_name)
-      @access_token = access_token
-      @site_name = site_name
+  class ResourceGateway
+    def initialize(options)
+      @access_token = options.fetch(:access_token)
+      @subdomain = options.fetch(:subdomain)
     end
 
     def json_index(endpoint, resource_name)
@@ -19,10 +19,10 @@ module Namely
 
     private
 
-    attr_reader :access_token, :site_name
+    attr_reader :access_token, :subdomain
 
     def url(path)
-      "https://#{site_name}.namely.com/api/v1#{path}"
+      "https://#{subdomain}.namely.com/api/v1#{path}"
     end
 
     def get(path, params = {})

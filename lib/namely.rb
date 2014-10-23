@@ -5,7 +5,7 @@ require "rest_client"
 require "namely/improperly_configured_error"
 require "namely/no_such_model_error"
 
-require "namely/client"
+require "namely/resource_gateway"
 require "namely/restful_model"
 require "namely/currency_type"
 require "namely/field"
@@ -30,8 +30,8 @@ module Namely
     yield configuration
   end
 
-  def self.client
-    configuration.client
+  def self.resource_gateway
+    configuration.resource_gateway
   end
 
   class Configuration
@@ -45,8 +45,11 @@ module Namely
       @site_name || raise_missing_variable_error(:site_name)
     end
 
-    def client
-      Namely::Client.new(access_token, site_name)
+    def resource_gateway
+      Namely::ResourceGateway.new(
+        access_token: access_token,
+        subdomain: site_name
+      )
     end
 
     private
