@@ -7,6 +7,8 @@ require "namely/no_such_model_error"
 
 require "namely/resource_gateway"
 require "namely/restful_model"
+
+require "namely/country"
 require "namely/currency_type"
 require "namely/field"
 require "namely/profile"
