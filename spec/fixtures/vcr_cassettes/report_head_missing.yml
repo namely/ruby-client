@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://sales14.namely.com/api/v1/reports/this-is-almost-certainly-not-the-id-of-any-model?access_token=26e61d40dcb6a87aa3e9090e998fae92
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 28 Oct 2014 18:40:23 GMT
+      Server:
+      - nginx/1.6.2
+      Status:
+      - 404 Not Found
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - bc34eae4-1ef8-4add-bcd0-174621b1707e
+      X-Runtime:
+      - '0.027697'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 28 Oct 2014 18:40:23 GMT
+recorded_with: VCR 2.9.3

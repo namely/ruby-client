@@ -12,6 +12,7 @@ require "namely/country"
 require "namely/currency_type"
 require "namely/field"
 require "namely/profile"
+require "namely/report"
 
 require "namely/version"
 
