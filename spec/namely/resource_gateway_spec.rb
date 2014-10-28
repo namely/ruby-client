@@ -1,57 +1,93 @@
 require "spec_helper"
 
 describe Namely::ResourceGateway do
-  def profile_gateway
-    Namely::ResourceGateway.new(
+  def gateway
+    @gateway ||= Namely::ResourceGateway.new(
       access_token: Namely.configuration.access_token,
-      endpoint: "profiles",
-      resource_name: "profiles",
+      endpoint: "widgets",
+      resource_name: "widgets",
       subdomain: Namely.configuration.subdomain
     )
   end
 
   def valid_id
-    "20332458-c1fe-412f-bcb8-01622f04a35d"
+    "this-is-a-valid-id"
   end
 
   def invalid_id
-    "123456789"
+    "this-is-not-a-valid-id"
   end
 
   describe "#json_index" do
     it "returns the parsed JSON representation of #index" do
-      VCR.use_cassette("profiles_index") do
-        profiles = profile_gateway.json_index
+      stub_request(
+        :get,
+        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets"
+      ).with(
+        query: {
+          access_token: Namely.configuration.access_token,
+          limit: :all
+        }
+      ).to_return(
+        body: "{\"widgets\": [\"woo!\"]}",
+        status: 200
+      )
 
-        expect(profiles).not_to be_empty
-        expect(profiles.first).to have_key "first_name"
-        expect(profiles.first).to have_key "last_name"
-      end
+      expect(gateway.json_index).to eq ["woo!"]
     end
   end
 
   describe "#json_show" do
     it "returns the parsed JSON representation of #show" do
-      VCR.use_cassette("profile_show") do
-        profile = profile_gateway.json_show(valid_id)
+      stub_request(
+        :get,
+        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets/#{valid_id}"
+      ).with(
+        query: {
+          access_token: Namely.configuration.access_token
+        }
+      ).to_return(
+        body: "{\"widgets\": [{\"name\": \"wilbur\", \"favorite_color\": \"chartreuse\"}]}",
+        status: 200
+      )
 
-        expect(profile["first_name"]).to eq "Leighton"
-        expect(profile["last_name"]).to eq "Meester"
-      end
+      widget = gateway.json_show(valid_id)
+
+      expect(widget["name"]).to eq "wilbur"
+      expect(widget["favorite_color"]).to eq "chartreuse"
     end
   end
 
   describe "#show_head" do
     it "returns an empty response if it succeeds" do
-      VCR.use_cassette("profile_head") do
-        expect(profile_gateway.show_head(valid_id)).to be_empty
-      end
+      stub_request(
+        :head,
+        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets/#{valid_id}"
+      ).with(
+        query: {
+          access_token: Namely.configuration.access_token
+        }
+      ).to_return(
+        body: "",
+        status: 200
+      )
+
+      expect(gateway.show_head(valid_id)).to be_empty
     end
 
     it "raises a RestClient::ResourceNotFound error if it fails" do
-      VCR.use_cassette("profile_head_missing") do
-        expect { profile_gateway.show_head(invalid_id) }.to raise_error RestClient::ResourceNotFound
-      end
+      stub_request(
+        :head,
+        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets/#{invalid_id}"
+      ).with(
+        query: {
+          access_token: Namely.configuration.access_token
+        }
+      ).to_return(
+        status: 404
+      )
+
+      expect { gateway.show_head(invalid_id) }.to raise_error RestClient::ResourceNotFound
     end
   end
 end
