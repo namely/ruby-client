@@ -1,6 +1,8 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 
+Dir[File.join(File.dirname(__FILE__), "shared_examples", "*")].each { |f| require f }
+
 require "namely"
 require "vcr"
 require "webmock/rspec"
@@ -11,6 +13,10 @@ TEST_SUBDOMAIN = "sales14"
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
+end
+
+def classname
+  described_class.name.split("::").last.downcase
 end
 
 def set_configuration!
