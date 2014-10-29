@@ -21,6 +21,12 @@ module Namely
     attr_writer :configuration
   end
 
+  # Return the current configuration.
+  #
+  # @raise [ImproperlyConfiguredError] if the subdomain or access token
+  #   haven't been configured.
+  #
+  # @return [Configuration]
   def self.configuration
     @configuration || raise(
       ImproperlyConfiguredError,
@@ -28,11 +34,30 @@ module Namely
     )
   end
 
+  # Set the configuration variables (the subdomain and access token)
+  # that allow the Namely gem to access your account.
+  #
+  # @yieldparam [Configuration] configuration the Configuration
+  #   object, the attributes of which can be set in the block.
+  #
+  # @example
+  #   Namely.configure do |config|
+  #     config.access_token = "your_access_token"
+  #     config.subdomain = "your-organization"
+  #   end
+  #
+  # @return [void]
   def self.configure
     @configuration ||= Configuration.new
     yield configuration
   end
 
+  # Return a resource gateway for interfacing with a given resource.
+  #
+  # @param [String] resource_name
+  # @param [String] endpoint
+  #
+  # @return [ResourceGateway]
   def self.resource_gateway(resource_name, endpoint)
     configuration.resource_gateway(resource_name, endpoint)
   end
@@ -40,14 +65,32 @@ module Namely
   class Configuration
     attr_writer :access_token, :subdomain
 
+    # Get the access token.
+    #
+    # @raise [ImproperlyConfiguredError] if the access token hasn't
+    #   been configured.
+    #
+    # @return [String] the access token
     def access_token
       @access_token || raise_missing_variable_error(:access_token)
     end
 
+    # Get the subdomain.
+    #
+    # @raise [ImproperlyConfiguredError] if the subdomain hasn't been
+    #   configured.
+    #
+    # @return [String] the subdomain
     def subdomain
       @subdomain || raise_missing_variable_error(:subdomain)
     end
 
+    # Create a resource gateway for interfacing with a given resource.
+    #
+    # @param [String] resource_name
+    # @param [String] endpoint
+    #
+    # @return [ResourceGateway]
     def resource_gateway(resource_name, endpoint)
       Namely::ResourceGateway.new(
         access_token: access_token,
