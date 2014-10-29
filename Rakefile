@@ -9,4 +9,8 @@ task :console do
   exec "irb -r namely -I ./lib"
 end
 
+task :documentation do
+  exec "yardoc --no-private"
+end
+
 task default: :spec
