@@ -43,6 +43,14 @@ module Namely
       Namely.resource_gateway(resource_name, endpoint)
     end
 
+    def self.endpoint
+      raise(
+        NotImplementedError,
+        "Namely::Model subclasses must define an `.endpoint` "\
+        "class method that returns their path in the API."
+      )
+    end
+
     def self.resource_name
       endpoint.split("/").last
     end

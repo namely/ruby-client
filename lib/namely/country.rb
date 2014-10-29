@@ -4,10 +4,6 @@ module Namely
       "countries"
     end
 
-    def self.resource_name
-      "countries"
-    end
-
-    private_class_method :endpoint, :resource_name
+    private_class_method :endpoint
   end
 end

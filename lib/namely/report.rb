@@ -4,10 +4,6 @@ module Namely
       "reports"
     end
 
-    def self.resource_name
-      "reports"
-    end
-
-    private_class_method :endpoint, :resource_name
+    private_class_method :endpoint
   end
 end
