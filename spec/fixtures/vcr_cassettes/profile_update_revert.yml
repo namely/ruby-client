@@ -1,16 +1,20 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://sales14.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d?access_token=26e61d40dcb6a87aa3e9090e998fae92
+    method: put
+    uri: https://sales14.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"profiles":[{"middle_name":"","email":"leighton@example.com"}],"access_token":"26e61d40dcb6a87aa3e9090e998fae92"}'
     headers:
       Accept:
       - application/json
       Accept-Encoding:
       - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '114'
       User-Agent:
       - Ruby
   response:
@@ -25,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 Oct 2014 14:48:30 GMT
+      - Fri, 31 Oct 2014 14:48:31 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -36,11 +40,11 @@ http_interactions:
       Vary:
       - Accept-Encoding
       X-Rack-Cache:
-      - miss
+      - invalidate, pass
       X-Request-Id:
-      - 14df81a4-ce40-49f2-a0a6-d8f7e758cd1c
+      - 82baecb8-6bd2-452c-a014-c2c59fa082a0
       X-Runtime:
-      - '0.093420'
+      - '0.213822'
       Transfer-Encoding:
       - chunked
       Connection:
@@ -87,5 +91,5 @@ http_interactions:
         SxqkCJKevMFP77Hzqe6+aNUJP1BjFZXjsHl8HC/7zvy+f1n2+132PXa+edmf
         j8f/AjJQ3/E7EQAA
     http_version: 
-  recorded_at: Fri, 31 Oct 2014 14:48:30 GMT
+  recorded_at: Fri, 31 Oct 2014 14:48:31 GMT
 recorded_with: VCR 2.9.3

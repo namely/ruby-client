@@ -13,8 +13,6 @@ http_interactions:
       - gzip, deflate
       Content-Type:
       - application/json
-      Access-Token:
-      - 26e61d40dcb6a87aa3e9090e998fae92
       Content-Length:
       - '67'
       User-Agent:
@@ -29,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 30 Oct 2014 17:10:14 GMT
+      - Fri, 31 Oct 2014 14:48:31 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -39,18 +37,18 @@ http_interactions:
       X-Rack-Cache:
       - invalidate, pass
       X-Request-Id:
-      - 975a374c-79e6-4de1-b399-44d83623b94b
+      - 6f5f7ebb-1637-43d4-ab92-3a0284baa0e2
       X-Runtime:
-      - '0.031046'
+      - '0.028830'
       Content-Length:
-      - '175'
+      - '172'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"message":"Error in creating profile","errors":["first_name is a required
+      string: '{"message":"error creating profile","errors":["first_name is a required
         field","last_name is a required field","email is a required field",["format
         of email  is invalid"]]}'
     http_version: 
-  recorded_at: Thu, 30 Oct 2014 17:10:14 GMT
+  recorded_at: Fri, 31 Oct 2014 14:48:31 GMT
 recorded_with: VCR 2.9.3

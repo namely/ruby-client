@@ -27,6 +27,10 @@ module Namely
       extract_id(response)
     end
 
+    def update(id, changes)
+      put("/#{endpoint}/#{id}", endpoint => [changes])
+    end
+
     private
 
     attr_reader :access_token, :endpoint, :resource_name, :subdomain
@@ -61,7 +65,16 @@ module Namely
         params.to_json,
         accept: :json,
         content_type: :json,
-        access_token: access_token,
+      )
+    end
+
+    def put(path, params)
+      params.merge!(access_token: access_token)
+      RestClient.put(
+        url(path),
+        params.to_json,
+        accept: :json,
+        content_type: :json
       )
     end
   end

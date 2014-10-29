@@ -4,6 +4,10 @@ module Namely
       "profiles"
     end
 
+    def required_keys_for_update
+      [:email]
+    end
+
     private_class_method :endpoint, :resource_name
   end
 end

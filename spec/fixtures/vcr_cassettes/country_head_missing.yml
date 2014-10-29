@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 30 Oct 2014 17:10:03 GMT
+      - Fri, 31 Oct 2014 14:48:28 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -37,14 +37,14 @@ http_interactions:
       X-Rack-Cache:
       - miss
       X-Request-Id:
-      - 2878d2fe-06f8-4089-ad99-598a13b224a5
+      - 85cd9b93-36cb-4e40-ba36-030a904efaa4
       X-Runtime:
-      - '0.018912'
+      - '0.017478'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 30 Oct 2014 17:10:03 GMT
+  recorded_at: Fri, 31 Oct 2014 14:48:28 GMT
 recorded_with: VCR 2.9.3

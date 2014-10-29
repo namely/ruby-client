@@ -53,17 +53,47 @@ module Namely
       new(attributes).save!
     end
 
-    # Try to persist the current (unpersisted) object. Raise an error
-    # if the object can't be saved.
+    # Update the attributes of this model. Assign the attributes
+    # according to the hash, then persist those changes on the server.
+    #
+    # @param [Hash] attributes the attributes to be updated on the model.
+    #
+    # @example
+    #   my_profile.update(
+    #     middle_name: "Ludwig"
+    #   )
+    #
+    # @raise [FailedRequestError] if the request failed for any reason.
+    #
+    # @return [RestfulModel] the updated model.
+    def update(attributes)
+      attributes.each do |key, value|
+        self[key] = value
+      end
+
+      begin
+        resource_gateway.update(id, attributes.merge(required_attributes_for_update))
+      rescue RestClient::Exception => e
+        raise FailedRequestError, e.message
+      end
+
+      self
+    end
+
+    # Try to persist the current object, either by creating a new
+    # object on the server or by updating an existing one. Raise an
+    # error if the object can't be saved.
     #
     # @raise [FailedRequestError] if the request failed for any reason.
     #
     # @return [RestfulModel] the model itself, if saving succeeded.
     def save!
-      if !persisted?
+      if persisted?
+        update(to_h)
+      else
         self.id = resource_gateway.create(to_h)
-        self
       end
+      self
     rescue RestClient::Exception => e
       raise FailedRequestError, e.message
     end
@@ -76,6 +106,10 @@ module Namely
     end
 
     private
+
+    def resource_gateway
+      self.class.resource_gateway
+    end
 
     def self.resource_gateway
       Namely.resource_gateway(resource_name, endpoint)
@@ -95,6 +129,14 @@ module Namely
 
     def self.resource_name
       endpoint.split("/").last
+    end
+
+    def required_keys_for_update
+      []
+    end
+
+    def required_attributes_for_update
+      to_h.select { |key, _| required_keys_for_update.include?(key) }
     end
   end
 end
