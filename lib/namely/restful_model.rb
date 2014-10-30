@@ -37,10 +37,52 @@ module Namely
       resource_gateway.json_index.map { |model| new(model) }
     end
 
+    # Create a new model on the server with the given attributes.
+    #
+    # @param [Hash] attributes the attributes of the model being created.
+    #
+    # @example
+    #   Profile.create!(
+    #     first_name: "Beardsly",
+    #     last_name: "McDog",
+    #     email: "beardsly@namely.com"
+    #   )
+    #
+    # @return [RestfulModel] the created model.
+    def self.create!(attributes)
+      new(attributes).save!
+    end
+
+    # Try to persist the current (unpersisted) object. Raise an error
+    # if the object can't be saved.
+    #
+    # @raise [FailedRequestError] if the request failed for any reason.
+    #
+    # @return [RestfulModel] the model itself, if saving succeeded.
+    def save!
+      if !persisted?
+        self.id = resource_gateway.create(to_h)
+        self
+      end
+    rescue RestClient::Exception => e
+      raise FailedRequestError, e.message
+    end
+
+    # Return true if the model exists (in some state) on the server.
+    #
+    # @return [Boolean]
+    def persisted?
+      !!id
+    end
+
     private
 
     def self.resource_gateway
       Namely.resource_gateway(resource_name, endpoint)
+    end
+
+    def resource_gateway
+      self.class.resource_gateway
     end
 
     def self.endpoint

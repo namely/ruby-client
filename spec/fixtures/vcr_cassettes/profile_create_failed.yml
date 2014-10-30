@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sales14.namely.com/api/v1/profiles
+    body:
+      encoding: UTF-8
+      string: '{"profiles":[{}],"access_token":"26e61d40dcb6a87aa3e9090e998fae92"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Access-Token:
+      - 26e61d40dcb6a87aa3e9090e998fae92
+      Content-Length:
+      - '67'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 30 Oct 2014 17:10:14 GMT
+      Server:
+      - nginx/1.6.2
+      Status:
+      - 422 Unprocessable Entity
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 975a374c-79e6-4de1-b399-44d83623b94b
+      X-Runtime:
+      - '0.031046'
+      Content-Length:
+      - '175'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"Error in creating profile","errors":["first_name is a required
+        field","last_name is a required field","email is a required field",["format
+        of email  is invalid"]]}'
+    http_version: 
+  recorded_at: Thu, 30 Oct 2014 17:10:14 GMT
+recorded_with: VCR 2.9.3

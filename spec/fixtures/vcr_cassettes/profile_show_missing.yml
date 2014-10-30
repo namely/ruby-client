@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 28 Oct 2014 18:10:13 GMT
+      - Thu, 30 Oct 2014 17:10:14 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -37,9 +37,9 @@ http_interactions:
       X-Rack-Cache:
       - miss
       X-Request-Id:
-      - 5752338b-cdb5-49af-a14b-1565877e8fc1
+      - 9a99250d-a46c-4c9b-ae39-937d729b8fdf
       X-Runtime:
-      - '0.027154'
+      - '0.016879'
       Content-Length:
       - '65'
       Connection:
@@ -50,5 +50,5 @@ http_interactions:
         H4sIAAAAAAAAA6tWyk0tLk5MT1WyUgooyk/LzElVyMsvUUjLL81LUdJRSi0q
         yi8qVrLKK83JqQUAmBVkdi0AAAA=
     http_version: 
-  recorded_at: Tue, 28 Oct 2014 18:10:13 GMT
+  recorded_at: Thu, 30 Oct 2014 17:10:14 GMT
 recorded_with: VCR 2.9.3

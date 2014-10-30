@@ -19,12 +19,29 @@ module Namely
       head("/#{endpoint}/#{id}")
     end
 
+    def create(attributes)
+      response = post(
+        "/#{endpoint}",
+        endpoint => [attributes]
+      )
+      extract_id(response)
+    end
+
     private
 
     attr_reader :access_token, :endpoint, :resource_name, :subdomain
 
     def url(path)
       "https://#{subdomain}.namely.com/api/v1#{path}"
+    end
+
+    def extract_id(response)
+      JSON.parse(response)[endpoint].first["id"]
+    rescue StandardError => e
+      raise(
+        FailedRequestError,
+        "Couldn't parse \"id\" from response: #{e.message}"
+      )
     end
 
     def get(path, params = {})
@@ -35,6 +52,17 @@ module Namely
     def head(path, params = {})
       params.merge!(access_token: access_token)
       RestClient.head(url(path), accept: :json, params: params)
+    end
+
+    def post(path, params)
+      params.merge!(access_token: access_token)
+      RestClient.post(
+        url(path),
+        params.to_json,
+        accept: :json,
+        content_type: :json,
+        access_token: access_token,
+      )
     end
   end
 end
