@@ -21,7 +21,7 @@ Or install it yourself as:
 
     $ gem install namely
 
-## Usage
+## Configuration
 
 You'll need to configure the gem to use your Namely account. Do this
 by setting the `access_token` and `subdomain` variables in a
@@ -44,6 +44,42 @@ organization. organization. For example, if your account is at
 
 In a Rails application this configuration belongs in
 `config/initializers/namely.rb`.
+
+## Usage Examples
+
+```ruby
+Namely::Country.all.each do |country|
+  puts "#{country.id} - #{country.name}"
+end
+# AF - Afghanistan
+# AL - Albania
+# DZ - Algeria
+# AS - American Samoa
+# ...
+```
+
+```ruby
+if Namely::Country.exists?("BE")
+  "Belgium exists!"
+else
+  "Hmm."
+end # => "Belgium exists!"
+```
+
+```ruby
+Namely::Country.find("BE")
+# => <Namely::Country id="BE", name="Belgium", subdivision_type="Province", links={"subdivisions"=>[{"id"=>"BRU", "name"=>"Brussels"}, {"id"=>"VAN", "name"=>"Antwerpen (nl)"}, {"id"=>"VBR", "name"=>"Vlaams Brabant (nl)"}, {"id"=>"VLI", "name"=>"Limburg (nl)"}, {"id"=>"VOV", "name"=>"Oost-Vlaanderen (nl)"}, {"id"=>"VWV", "name"=>"West-Vlaanderen (nl)"}, {"id"=>"WBR", "name"=>"Brabant Wallon (fr)"}, {"id"=>"WHT", "name"=>"Hainaut (fr)"}, {"id"=>"WLG", "name"=>"Liège (fr)"}, {"id"=>"WLX", "name"=>"Luxembourg (fr)"}, {"id"=>"WNA", "name"=>"Namur (fr)"}]}>
+```
+
+```ruby
+foo_bar = Namely::Profile.create!(
+  first_name: "Metasyntactic",
+  last_name: "Variable",
+  email: "foo_bar@namely.com"
+)
+
+foo_bar.id # => "37c919e2-f1c8-4beb-b1d4-a9a36ccc830c"
+```
 
 ## Contributing
 
