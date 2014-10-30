@@ -2,9 +2,7 @@ require "json"
 require "ostruct"
 require "rest_client"
 
-require "namely/improperly_configured_error"
-require "namely/no_such_model_error"
-
+require "namely/exceptions"
 require "namely/resource_gateway"
 require "namely/restful_model"
 
