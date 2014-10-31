@@ -10,6 +10,7 @@ require "namely/restful_model"
 require "namely/country"
 require "namely/currency_type"
 require "namely/field"
+require "namely/job_tier"
 require "namely/profile"
 require "namely/report"
 
