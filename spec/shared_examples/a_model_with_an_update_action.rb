@@ -5,9 +5,12 @@ shared_examples_for "a model with an update action" do |valid_id, changes|
       original_values = nil
 
       VCR.use_cassette("#{classname}_show") do
-        model = Namely::Profile.find(valid_id)
+        model = described_class.find(valid_id)
       end
-      expect(model.middle_name).to be_empty
+
+      changes.each do |attribute, value|
+        expect(model[attribute]).not_to eq value
+      end
 
       original_values = model.to_h.select { |attribute, _| changes.keys.include?(attribute) }
 
@@ -16,7 +19,7 @@ shared_examples_for "a model with an update action" do |valid_id, changes|
       end
 
       VCR.use_cassette("#{classname}_show_updated") do
-        model = Namely::Profile.find(valid_id)
+        model = described_class.find(valid_id)
       end
       changes.each do |attribute, value|
         expect(model[attribute]).to eq value
