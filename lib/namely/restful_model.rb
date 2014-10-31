@@ -127,6 +127,12 @@ module Namely
       endpoint.split("/").last
     end
 
+    # The update action for certain models requires populating certain
+    # fields. Without populating these fields, an update with
+    # fail. This method is intended to be overwritten by subclasses
+    # with required keys.
+    #
+    # @return [Array<Symbol>]
     def required_keys_for_update
       []
     end
