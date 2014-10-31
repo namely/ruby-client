@@ -2,18 +2,20 @@ PATH
   remote: .
   specs:
     namely (0.0.1)
+      backports
       rest_client
 
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
+    backports (3.6.3)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
     netrc (0.7.9)
     rake (10.3.2)
-    rest_client (1.7.3)
+    rest_client (1.8.1)
       netrc (~> 0.7.7)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
