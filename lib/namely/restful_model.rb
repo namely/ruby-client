@@ -71,11 +71,7 @@ module Namely
         self[key] = value
       end
 
-      begin
-        resource_gateway.update(id, attributes.merge(required_attributes_for_update))
-      rescue RestClient::Exception => e
-        raise FailedRequestError, e.message
-      end
+      persist_model_changes(attributes)
 
       self
     end
@@ -137,6 +133,12 @@ module Namely
 
     def required_attributes_for_update
       to_h.select { |key, _| required_keys_for_update.include?(key) }
+    end
+
+    def persist_model_changes(changed_attributes)
+      resource_gateway.update(id, changed_attributes.merge(required_attributes_for_update))
+    rescue RestClient::Exception => e
+      raise FailedRequestError, e.message
     end
   end
 end
