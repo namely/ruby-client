@@ -11,6 +11,7 @@ require "namely/country"
 require "namely/currency_type"
 require "namely/event"
 require "namely/field"
+require "namely/job_tier"
 require "namely/profile"
 require "namely/report"
 
