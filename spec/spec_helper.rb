@@ -13,8 +13,22 @@ Dotenv.load
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
-  config.filter_sensitive_data("<TEST_ACCESS_TOKEN>") { ENV.fetch("TEST_ACCESS_TOKEN") }
-  config.filter_sensitive_data("<TEST_SUBDOMAIN>") { ENV.fetch("TEST_SUBDOMAIN") }
+
+  environment_variables = [
+    "AUTH_CODE",
+    "CLIENT_ID",
+    "CLIENT_REDIRECT_URI",
+    "CLIENT_SECRET",
+    "TEST_ACCESS_TOKEN",
+    "TEST_REFRESH_TOKEN",
+    "TEST_SUBDOMAIN",
+  ]
+
+  environment_variables.each do |env_var|
+    config.filter_sensitive_data("<#{env_var}>") do
+      ENV.fetch(env_var)
+    end
+  end
 end
 
 def classname

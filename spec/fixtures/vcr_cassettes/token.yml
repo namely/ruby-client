@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/oauth2/token?redirect_uri=<CLIENT_REDIRECT_URI>
+    body:
+      encoding: US-ASCII
+      string: grant_type=authorization_code&client_id=<CLIENT_ID>&client_secret=<CLIENT_SECRET>&code=<AUTH_CODE>
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Length:
+      - '189'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 04 Nov 2014 16:38:10 GMT
+      Etag:
+      - '"fc3490b779796351d40312ba491c69c2"'
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=31536000
+      - max-age=31536000; includeSubDomains;
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 386d8523-f838-4023-a096-f74bc6c6291e
+      X-Runtime:
+      - '0.059499'
+      Content-Length:
+      - '141'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"<%= access_token %>","refresh_token":"<%= refresh_token %>","token_type":"bearer","expires_in":899}'
+    http_version: 
+  recorded_at: Tue, 04 Nov 2014 16:38:11 GMT
+recorded_with: VCR 2.9.3
