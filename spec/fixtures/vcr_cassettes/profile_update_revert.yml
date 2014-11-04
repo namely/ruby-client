@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: put
-    uri: https://sales14.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d
     body:
       encoding: UTF-8
-      string: '{"profiles":[{"middle_name":"","email":"leighton@example.com"}],"access_token":"26e61d40dcb6a87aa3e9090e998fae92"}'
+      string: '{"profiles":[{"middle_name":"","email":"leighton@example.com"}],"access_token":"<TEST_ACCESS_TOKEN>"}'
     headers:
       Accept:
       - application/json
@@ -29,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 Oct 2014 14:48:31 GMT
+      - Tue, 04 Nov 2014 16:34:49 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -42,11 +42,11 @@ http_interactions:
       X-Rack-Cache:
       - invalidate, pass
       X-Request-Id:
-      - 82baecb8-6bd2-452c-a014-c2c59fa082a0
+      - 0950f3b9-c16a-4b2b-b16d-20ef06e0102e
       X-Runtime:
-      - '0.213822'
-      Transfer-Encoding:
-      - chunked
+      - '0.187326'
+      Content-Length:
+      - '1677'
       Connection:
       - keep-alive
     body:
@@ -91,5 +91,5 @@ http_interactions:
         SxqkCJKevMFP77Hzqe6+aNUJP1BjFZXjsHl8HC/7zvy+f1n2+132PXa+edmf
         j8f/AjJQ3/E7EQAA
     http_version: 
-  recorded_at: Fri, 31 Oct 2014 14:48:31 GMT
+  recorded_at: Tue, 04 Nov 2014 16:34:49 GMT
 recorded_with: VCR 2.9.3

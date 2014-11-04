@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://sales14.namely.com/api/v1/profiles
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/profiles
     body:
       encoding: UTF-8
-      string: '{"profiles":[{}],"access_token":"26e61d40dcb6a87aa3e9090e998fae92"}'
+      string: '{"profiles":[{}],"access_token":"<TEST_ACCESS_TOKEN>"}'
     headers:
       Accept:
       - application/json
@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 Oct 2014 14:48:31 GMT
+      - Tue, 04 Nov 2014 16:34:48 GMT
       Server:
-      - nginx/1.6.2
+      - nginx
       Status:
       - 422 Unprocessable Entity
       Strict-Transport-Security:
@@ -37,9 +37,9 @@ http_interactions:
       X-Rack-Cache:
       - invalidate, pass
       X-Request-Id:
-      - 6f5f7ebb-1637-43d4-ab92-3a0284baa0e2
+      - f3e2349d-23fa-49e6-aefe-5c40c3d0e989
       X-Runtime:
-      - '0.028830'
+      - '0.089512'
       Content-Length:
       - '172'
       Connection:
@@ -50,5 +50,5 @@ http_interactions:
         field","last_name is a required field","email is a required field",["format
         of email  is invalid"]]}'
     http_version: 
-  recorded_at: Fri, 31 Oct 2014 14:48:31 GMT
+  recorded_at: Tue, 04 Nov 2014 16:34:48 GMT
 recorded_with: VCR 2.9.3

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: head
-    uri: https://sales14.namely.com/api/v1/events/this-is-almost-certainly-not-the-id-of-any-model?access_token=26e61d40dcb6a87aa3e9090e998fae92
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/events/this-is-almost-certainly-not-the-id-of-any-model?access_token=<TEST_ACCESS_TOKEN>
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 Oct 2014 19:08:22 GMT
+      - Tue, 04 Nov 2014 16:34:37 GMT
       Server:
       - nginx
       Status:
@@ -37,14 +37,14 @@ http_interactions:
       X-Rack-Cache:
       - miss
       X-Request-Id:
-      - f0b9652a-64ba-4061-8f65-1cad530efaba
+      - a11317bb-9a5d-4a25-8169-a65ec3d3756a
       X-Runtime:
-      - '0.045548'
+      - '0.016797'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 31 Oct 2014 19:08:22 GMT
+  recorded_at: Tue, 04 Nov 2014 16:34:37 GMT
 recorded_with: VCR 2.9.3

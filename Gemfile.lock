@@ -13,6 +13,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    dotenv (1.0.2)
     netrc (0.7.9)
     rake (10.3.2)
     rest_client (1.8.1)
@@ -41,6 +42,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.7)
+  dotenv
   namely!
   rake (~> 10.0)
   rspec

@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: put
-    uri: https://sales14.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d
     body:
       encoding: UTF-8
-      string: '{"profiles":[{"middle_name":"Beardsly","email":"leighton@example.com"}],"access_token":"26e61d40dcb6a87aa3e9090e998fae92"}'
+      string: '{"profiles":[{"middle_name":"Beardsly","email":"leighton@example.com"}],"access_token":"<TEST_ACCESS_TOKEN>"}'
     headers:
       Accept:
       - application/json
@@ -29,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 Oct 2014 14:48:30 GMT
+      - Tue, 04 Nov 2014 16:34:48 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -42,11 +42,11 @@ http_interactions:
       X-Rack-Cache:
       - invalidate, pass
       X-Request-Id:
-      - c54faafc-8bf8-4d7e-8215-c66b1924d4d7
+      - 2d0e55f9-c3f8-4d5b-825d-9fa2b613f20c
       X-Runtime:
-      - '0.206647'
-      Transfer-Encoding:
-      - chunked
+      - '0.221251'
+      Content-Length:
+      - '1684'
       Connection:
       - keep-alive
     body:
@@ -91,5 +91,5 @@ http_interactions:
         gGvVwv96d0sapAiSnrzBT++x86nuvmrVCT9QYxWV47B5fBwv+878vn9Z9v+7
         7HvsfPOyPx2P/wFOw5oeQxEAAA==
     http_version: 
-  recorded_at: Fri, 31 Oct 2014 14:48:30 GMT
+  recorded_at: Tue, 04 Nov 2014 16:34:49 GMT
 recorded_with: VCR 2.9.3

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://sales14.namely.com/api/v1/profiles/fields?access_token=26e61d40dcb6a87aa3e9090e998fae92&limit=all
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/profiles/fields?access_token=<TEST_ACCESS_TOKEN>&limit=all
     body:
       encoding: US-ASCII
       string: ''
@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 Oct 2014 14:48:30 GMT
+      - Tue, 04 Nov 2014 16:34:37 GMT
       Server:
       - nginx/1.6.2
       Status:
@@ -38,11 +38,11 @@ http_interactions:
       X-Rack-Cache:
       - miss
       X-Request-Id:
-      - 3a331a43-144b-4995-96ef-6cd224801977
+      - bc92f91e-1ad8-4fa2-b2e8-711571ca749c
       X-Runtime:
-      - '0.166428'
-      Transfer-Encoding:
-      - chunked
+      - '0.159013'
+      Content-Length:
+      - '6920'
       Connection:
       - keep-alive
     body:
@@ -203,5 +203,5 @@ http_interactions:
         Ro6MNRwZkTcyuG1kCNjIQKiRYUUjA3RGBrCMDAIZGQUxMn5g5LH5yIPokeey
         I084Rx4BjjxcG3kYNfK4Z+TpwKjjFJgl/Pt/wg+IU+SDAAA=
     http_version: 
-  recorded_at: Fri, 31 Oct 2014 14:48:30 GMT
+  recorded_at: Tue, 04 Nov 2014 16:34:37 GMT
 recorded_with: VCR 2.9.3
