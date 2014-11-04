@@ -91,7 +91,24 @@ started:
   deviating from it, that may well be a bug.
 * For coding style, we like [thoughtbot's style guide]
 
-Here's the process:
+### Setting up a development environment
+
+The Namely gem uses [dotenv] to manage environment variables. To run
+the tests you'll need to create a `.env` file in the project's root
+directory and assign a few variables in it.
+
+Just take this example `.env` file and plug in appropriate values:
+
+```
+TEST_ACCESS_TOKEN=my-sample-access-token
+TEST_SUBDOMAIN=my-sample-subdomain
+```
+
+You'll need admin access to a Namely site to get tokens for these
+variables. You can create application and permanent tokens on the API
+page of the site.
+
+### Submitting your changes
 
 1. [Fork it!]
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -104,4 +121,5 @@ Here's the process:
 [Namely's HTTP API]: http://namely.readme.io/v1/docs
 [thoughtbot's style guide]: https://github.com/thoughtbot/guides/tree/master/style
 [JSON API standard]: http://jsonapi.org/
+[dotenv]: https://github.com/bkeepers/dotenv
 [Fork it!]: https://github.com/namely/ruby-client/fork
