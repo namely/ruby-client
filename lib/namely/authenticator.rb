@@ -106,6 +106,23 @@ module Namely
       )
     end
 
+    # Return the Profile of the user accessing the API.
+    #
+    # @param [String] access_token
+    #
+    # @return [Profile] the profile of the current user.
+    def current_user(access_token)
+      subdomain = Namely.configuration.subdomain
+      response = RestClient.get(
+        "https://#{subdomain}.namely.com/api/v1/profiles/me",
+        accept: :json,
+        params: {
+          access_token: access_token,
+        },
+      )
+      Profile.new(JSON.parse(response)["profiles"].first)
+    end
+
     private
 
     attr_reader :client_id, :client_secret

@@ -140,4 +140,19 @@ describe Namely::Authenticator do
       end
     end
   end
+
+  describe "#current_user" do
+    it "returns the profile of the current user" do
+      VCR.use_cassette("current_user") do
+        authenticator = described_class.new(
+          client_id: "MY_CLIENT_ID",
+          client_secret: "MY_CLIENT_SECRET",
+        )
+
+        profile = authenticator.current_user(ENV.fetch("TEST_ACCESS_TOKEN"))
+
+        expect(profile.id).to eq "459748d5-608c-4dce-bca9-49a066d7f3d0"
+      end
+    end
+  end
 end
