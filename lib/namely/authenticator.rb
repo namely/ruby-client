@@ -108,11 +108,14 @@ module Namely
 
     # Return the Profile of the user accessing the API.
     #
-    # @param [String] access_token
+    # @param [Hash] options
+    # @option options [String] access_token (required)
+    # @option options [String] subdomain (required)
     #
     # @return [Profile] the profile of the current user.
-    def current_user(access_token)
-      subdomain = Namely.configuration.subdomain
+    def current_user(options)
+      access_token = options.fetch(:access_token)
+      subdomain = options.fetch(:subdomain)
       response = RestClient.get(
         "https://#{subdomain}.namely.com/api/v1/profiles/me",
         accept: :json,

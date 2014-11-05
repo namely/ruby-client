@@ -167,7 +167,10 @@ describe Namely::Authenticator do
           client_secret: "MY_CLIENT_SECRET",
         )
 
-        profile = authenticator.current_user(ENV.fetch("TEST_ACCESS_TOKEN"))
+        profile = authenticator.current_user(
+          access_token: ENV.fetch("TEST_ACCESS_TOKEN"),
+          subdomain: ENV.fetch("TEST_SUBDOMAIN"),
+        )
 
         expect(profile.id).to eq "459748d5-608c-4dce-bca9-49a066d7f3d0"
       end
