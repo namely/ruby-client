@@ -27,13 +27,13 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 04 Nov 2014 16:38:10 GMT
+      - Wed, 05 Nov 2014 19:34:30 GMT
       Etag:
-      - '"fc3490b779796351d40312ba491c69c2"'
+      - '"d5351a93b070c18ad88f3eb2c60ec3cc"'
       Pragma:
       - no-cache
       Server:
-      - nginx
+      - nginx/1.6.2
       Status:
       - 200 OK
       Strict-Transport-Security:
@@ -42,9 +42,9 @@ http_interactions:
       X-Rack-Cache:
       - invalidate, pass
       X-Request-Id:
-      - 386d8523-f838-4023-a096-f74bc6c6291e
+      - 22bf7278-55c0-44bc-81b5-daac511edc48
       X-Runtime:
-      - '0.059499'
+      - '0.065517'
       Content-Length:
       - '141'
       Connection:
@@ -53,5 +53,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"access_token":"<%= access_token %>","refresh_token":"<%= refresh_token %>","token_type":"bearer","expires_in":899}'
     http_version: 
-  recorded_at: Tue, 04 Nov 2014 16:38:11 GMT
+  recorded_at: Wed, 05 Nov 2014 19:34:30 GMT
 recorded_with: VCR 2.9.3

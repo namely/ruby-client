@@ -67,7 +67,11 @@ module Namely
     #
     # @return [Hash]
     def retrieve_tokens(options)
-      request_tokens(options, "authorization_code", options.fetch(:code))
+      request_tokens(
+        options,
+        grant_type: "authorization_code",
+        code: options.fetch(:code),
+      )
     end
 
     # Get an updated access token using the refresh token.
@@ -95,20 +99,24 @@ module Namely
     #
     # @return [Hash]
     def refresh_access_token(options)
-      request_tokens(options, "refresh_token", options.fetch(:refresh_token))
+      request_tokens(
+        options,
+        grant_type: "refresh_token",
+        refresh_token: options.fetch(:refresh_token),
+      )
     end
 
     private
 
     attr_reader :client_id, :client_secret
 
-    def request_tokens(options, grant_type, token)
+    def request_tokens(url_options, post_params)
       response = RestClient.post(
-        URL.new(options.merge(path: "/api/v1/oauth2/token")).to_s,
-        grant_type: grant_type,
-        client_id: client_id,
-        client_secret: client_secret,
-        refresh_token: token,
+        URL.new(url_options.merge(path: "/api/v1/oauth2/token")).to_s,
+        {
+          client_id: client_id,
+          client_secret: client_secret,
+        }.merge(post_params),
       )
       JSON.parse(response)
     end
