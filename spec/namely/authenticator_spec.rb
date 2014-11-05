@@ -79,6 +79,24 @@ describe Namely::Authenticator do
       expect(parsed_uri.scheme).to eq "http"
       expect(parsed_uri.host).to eq "testing.example.com"
     end
+
+    it "accepts a state parameter" do
+      authenticator = described_class.new(
+        client_id: "MY_CLIENT_ID",
+        client_secret: "MY_CLIENT_SECRET",
+      )
+
+      state = "this-is-a-piece-of-state"
+
+      authorization_code_url = authenticator.authorization_code_url(
+        subdomain: "ellingsonmineral",
+        state: state,
+      )
+
+      parsed_uri = URI(authorization_code_url)
+      parsed_query = CGI.parse(parsed_uri.query)
+      expect(parsed_query["state"]).to eq [state]
+    end
   end
 
   describe "#retrieve_tokens" do

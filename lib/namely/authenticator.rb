@@ -174,14 +174,15 @@ module Namely
       end
 
       def params
-        options.fetch(:params, {}).merge(redirect_uri_param)
+        options.fetch(:params, {}).merge(optional_params)
       end
 
-      def redirect_uri_param
-        if options.has_key?(:redirect_uri)
-          { redirect_uri: options[:redirect_uri] }
-        else
-          {}
+      def optional_params
+        [:redirect_uri, :state].inject({}) do |additional_params, key|
+          if options.has_key?(key)
+            additional_params[key] = options[key]
+          end
+          additional_params
         end
       end
     end
