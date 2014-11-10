@@ -1,9 +1,11 @@
 module Namely
   class ResourceGateway
+    attr_reader :endpoint
+
     def initialize(options)
       @access_token = options.fetch(:access_token)
       @endpoint = options.fetch(:endpoint)
-      @resource_name = options.fetch(:resource_name)
+      @resource_name = options[:resource_name]
       @subdomain = options.fetch(:subdomain)
     end
 
@@ -33,7 +35,11 @@ module Namely
 
     private
 
-    attr_reader :access_token, :endpoint, :resource_name, :subdomain
+    attr_reader :access_token, :subdomain
+
+    def resource_name
+      @resource_name || endpoint.split("/").last
+    end
 
     def url(path)
       "https://#{subdomain}.namely.com/api/v1#{path}"

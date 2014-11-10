@@ -6,6 +6,8 @@ require "rest_client"
 require "namely/authenticator"
 require "namely/exceptions"
 require "namely/resource_gateway"
+require "namely/collection"
+require "namely/connection"
 require "namely/restful_model"
 
 require "namely/country"
