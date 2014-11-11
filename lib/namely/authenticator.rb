@@ -106,13 +106,13 @@ module Namely
       )
     end
 
-    # Return the Profile of the user accessing the API.
+    # Return the profile of the user accessing the API.
     #
     # @param [Hash] options
     # @option options [String] access_token (required)
     # @option options [String] subdomain (required)
     #
-    # @return [Profile] the profile of the current user.
+    # @return [Model] the profile of the current user.
     def current_user(options)
       access_token = options.fetch(:access_token)
       subdomain = options.fetch(:subdomain)
@@ -123,7 +123,7 @@ module Namely
           access_token: access_token,
         },
       )
-      Profile.new(JSON.parse(response)["profiles"].first)
+      build_profile(access_token, subdomain, JSON.parse(response)["profiles"].first)
     end
 
     private
@@ -139,6 +139,15 @@ module Namely
         }.merge(post_params),
       )
       JSON.parse(response)
+    end
+
+    def build_profile(access_token, subdomain, attributes)
+      profile_gateway = ResourceGateway.new(
+        access_token: access_token,
+        endpoint: "profiles",
+        subdomain: subdomain,
+      )
+      Model.new(profile_gateway, attributes)
     end
 
     class URL

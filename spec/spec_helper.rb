@@ -30,20 +30,3 @@ VCR.configure do |config|
     end
   end
 end
-
-def classname
-  described_class.name.split("::").last.downcase
-end
-
-def set_configuration!
-  Namely.configure do |config|
-    config.access_token = ENV.fetch("TEST_ACCESS_TOKEN")
-    config.subdomain = ENV.fetch("TEST_SUBDOMAIN")
-  end
-end
-
-def unset_configuration!
-  Namely.configuration = nil
-end
-
-set_configuration!

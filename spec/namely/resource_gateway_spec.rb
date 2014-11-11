@@ -1,12 +1,20 @@
 require "spec_helper"
 
 describe Namely::ResourceGateway do
+  def access_token
+    ENV.fetch("TEST_ACCESS_TOKEN")
+  end
+
+  def subdomain
+    ENV.fetch("TEST_SUBDOMAIN")
+  end
+
   def gateway
     @gateway ||= Namely::ResourceGateway.new(
-      access_token: Namely.configuration.access_token,
+      access_token: access_token,
       endpoint: "widgets",
       resource_name: "widgets",
-      subdomain: Namely.configuration.subdomain
+      subdomain: subdomain,
     )
   end
 
@@ -22,10 +30,10 @@ describe Namely::ResourceGateway do
     it "returns the parsed JSON representation of #index" do
       stub_request(
         :get,
-        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets"
+        "https://#{subdomain}.namely.com/api/v1/widgets"
       ).with(
         query: {
-          access_token: Namely.configuration.access_token,
+          access_token: access_token,
           limit: :all
         }
       ).to_return(
@@ -41,10 +49,10 @@ describe Namely::ResourceGateway do
     it "returns the parsed JSON representation of #show" do
       stub_request(
         :get,
-        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets/#{valid_id}"
+        "https://#{subdomain}.namely.com/api/v1/widgets/#{valid_id}"
       ).with(
         query: {
-          access_token: Namely.configuration.access_token
+          access_token: access_token
         }
       ).to_return(
         body: "{\"widgets\": [{\"name\": \"wilbur\", \"favorite_color\": \"chartreuse\"}]}",
@@ -62,10 +70,10 @@ describe Namely::ResourceGateway do
     it "returns an empty response if it succeeds" do
       stub_request(
         :head,
-        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets/#{valid_id}"
+        "https://#{subdomain}.namely.com/api/v1/widgets/#{valid_id}"
       ).with(
         query: {
-          access_token: Namely.configuration.access_token
+          access_token: access_token
         }
       ).to_return(
         body: "",
@@ -78,10 +86,10 @@ describe Namely::ResourceGateway do
     it "raises a RestClient::ResourceNotFound error if it fails" do
       stub_request(
         :head,
-        "https://#{Namely.configuration.subdomain}.namely.com/api/v1/widgets/#{invalid_id}"
+        "https://#{subdomain}.namely.com/api/v1/widgets/#{invalid_id}"
       ).with(
         query: {
-          access_token: Namely.configuration.access_token
+          access_token: access_token
         }
       ).to_return(
         status: 404
