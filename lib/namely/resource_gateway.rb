@@ -5,7 +5,6 @@ module Namely
     def initialize(options)
       @access_token = options.fetch(:access_token)
       @endpoint = options.fetch(:endpoint)
-      @resource_name = options[:resource_name]
       @subdomain = options.fetch(:subdomain)
     end
 
@@ -38,7 +37,7 @@ module Namely
     attr_reader :access_token, :subdomain
 
     def resource_name
-      @resource_name || endpoint.split("/").last
+      endpoint.split("/").last
     end
 
     def url(path)

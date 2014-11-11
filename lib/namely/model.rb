@@ -25,7 +25,7 @@ module Namely
     #
     # @return [Boolean]
     def persisted?
-      !!id
+      id != nil
     end
 
     private

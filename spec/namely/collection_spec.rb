@@ -4,7 +4,10 @@ describe Namely::Collection do
   describe "country collections" do
     subject { collection("countries") }
 
-    it_behaves_like "a resource with an index action", [:id, :name, :subdivision_type]
+    it_behaves_like(
+      "a resource with an index action",
+      [:id, :name, :subdivision_type]
+    )
 
     it_behaves_like(
       "a resource with a show action",
@@ -47,7 +50,10 @@ describe Namely::Collection do
   describe "profile collections" do
     subject { collection("profiles") }
 
-    it_behaves_like "a resource with an index action", [:first_name, :last_name]
+    it_behaves_like(
+      "a resource with an index action",
+      [:first_name, :last_name]
+    )
 
     it_behaves_like(
       "a resource with a show action",

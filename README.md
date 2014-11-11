@@ -71,9 +71,9 @@ namely.countries.find("BE")
 
 ```ruby
 foo_bar = namely.profiles.create!(
-  first_name: "Metasyntactic",
-  last_name: "Variable",
-  email: "foo_bar@namely.com"
+  first_name: "Dade",
+  last_name: "Murphy",
+  email: "crash_override@example.com"
 )
 
 foo_bar.id # => "37c919e2-f1c8-4beb-b1d4-a9a36ccc830c"

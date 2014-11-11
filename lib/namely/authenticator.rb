@@ -123,7 +123,11 @@ module Namely
           access_token: access_token,
         },
       )
-      build_profile(access_token, subdomain, JSON.parse(response)["profiles"].first)
+      build_profile(
+        access_token,
+        subdomain,
+        JSON.parse(response)["profiles"].first
+      )
     end
 
     private
