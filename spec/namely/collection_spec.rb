@@ -1,6 +1,49 @@
 require "spec_helper"
 
 describe Namely::Collection do
+  describe "country collections" do
+    subject { collection("countries") }
+
+    it_behaves_like "a resource with an index action", [:id, :name, :subdivision_type]
+
+    it_behaves_like(
+      "a resource with a show action",
+      id: "US",
+      name: "United States",
+      subdivision_type: "State"
+    )
+  end
+
+  describe "currency type collections" do
+    subject { collection("currency_types") }
+
+    it_behaves_like "a resource with an index action"
+  end
+
+  describe "event collections" do
+    subject { collection("events") }
+
+    it_behaves_like "a resource with an index action", [:type]
+
+    it_behaves_like(
+      "a resource with a show action",
+      id: "e5573698-3934-4abf-99cf-577b526d4789",
+      type: "recent_arrival",
+    )
+  end
+
+  describe "field collections" do
+    subject { collection("profiles/fields") }
+
+    it_behaves_like "a resource with an index action"
+  end
+
+  describe "job tier collections" do
+    subject { collection("job_tiers") }
+
+    it_behaves_like "a resource with an index action", [:title]
+  end
+
   describe "profile collections" do
     subject { collection("profiles") }
 
@@ -18,6 +61,15 @@ describe Namely::Collection do
       first_name: "Beardsly",
       last_name: "McDog",
       email: "beardsly-#{Time.now.utc.to_f}@namely.com"
+    )
+  end
+
+  describe "report collections" do
+    subject { collection("reports") }
+
+    it_behaves_like(
+      "a resource with a show action",
+      id: "bbf089f6-90c5-473c-8928-058014a462c9"
     )
   end
 

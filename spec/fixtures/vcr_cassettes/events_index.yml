@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/events?access_token=<TEST_ACCESS_TOKEN>&limit=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 11 Nov 2014 16:04:08 GMT
+      Server:
+      - nginx/1.6.2
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=31536000
+      - max-age=31536000; includeSubDomains;
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 34f90f20-201d-427b-8686-0d10ba902481
+      X-Runtime:
+      - '0.116558'
+      Content-Length:
+      - '1620'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Tue, 11 Nov 2014 16:04:08 GMT
+recorded_with: VCR 2.9.3

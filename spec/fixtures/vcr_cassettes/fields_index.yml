@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/fields?access_token=<TEST_ACCESS_TOKEN>&limit=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 11 Nov 2014 16:09:02 GMT
+      Server:
+      - nginx/1.6.2
+      Status:
+      - 401 Unauthorized
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - bda2ad09-d7bf-4f04-b19d-ddc0452165c1
+      X-Runtime:
+      - '0.009198'
+      Content-Length:
+      - '12'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"error":""}'
+    http_version: 
+  recorded_at: Tue, 11 Nov 2014 16:09:02 GMT
+recorded_with: VCR 2.9.3

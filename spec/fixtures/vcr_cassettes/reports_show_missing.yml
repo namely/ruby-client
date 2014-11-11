@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/reports/this-is-almost-certainly-not-the-id-of-any-model?access_token=<TEST_ACCESS_TOKEN>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 11 Nov 2014 16:10:17 GMT
+      Server:
+      - nginx
+      Status:
+      - 404 Not Found
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 59152f7c-363e-4b32-af5a-afa1b6f92fa2
+      X-Runtime:
+      - '0.043690'
+      Content-Length:
+      - '62'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6tWyk0tLk5MT1WyUgpKLcgvKlHIyy9RSMsvzUtR0lFKLSrK
+        LypWsoqOrQUAFxI/qSoAAAA=
+    http_version: 
+  recorded_at: Tue, 11 Nov 2014 16:10:17 GMT
+recorded_with: VCR 2.9.3
