@@ -3,7 +3,8 @@
 [![Travis](https://travis-ci.org/namely/ruby-client.svg?branch=master)](https://travis-ci.org/namely/ruby-client/builds)
 [![Code Climate](https://codeclimate.com/github/namely/ruby-client/badges/gpa.svg)](https://codeclimate.com/github/namely/ruby-client)
 
-TODO: Write a gem description
+The Namely gem wraps the Namely HTTP API, allowing you to manipulate
+your account through Ruby.
 
 ## Installation
 
@@ -21,34 +22,31 @@ Or install it yourself as:
 
     $ gem install namely
 
-## Configuration
+## Establishing a connection
 
-You'll need to configure the gem to use your Namely account. Do this
-by setting the `access_token` and `subdomain` variables in a
-configuration block:
+First, you'll need to create a connection to your Namely account using
+your access token and subdomain.
 
 ```ruby
-Namely.configure do |config|
-  config.access_token = "your_access_token"
-  config.subdomain = "your-organization"
-end
+namely = Namely::Connection.new(
+  access_token: "your_access_token",
+  subdomain: "your-organization",
+)
 ```
 
 An access token can be obtained through your organization's Namely
 account.
 
-Namely associates a subdomain with your
-organization. organization. For example, if your account is at
-`http://your-organization.namely.com/`, your subdomain would be
-`"your-organization"`.
-
-In a Rails application this configuration belongs in
-`config/initializers/namely.rb`.
+Namely associates a subdomain with your organization. For example, if
+your account is at `http://your-organization.namely.com/`, your
+subdomain would be `"your-organization"`.
 
 ## Usage Examples
 
+Once you've created a connection you can use it to access your data.
+
 ```ruby
-Namely::Country.all.each do |country|
+namely.countries.all.each do |country|
   puts "#{country.id} - #{country.name}"
 end
 # AF - Afghanistan
@@ -59,7 +57,7 @@ end
 ```
 
 ```ruby
-if Namely::Country.exists?("BE")
+if namely.countries.exists?("BE")
   "Belgium exists!"
 else
   "Hmm."
@@ -67,12 +65,12 @@ end # => "Belgium exists!"
 ```
 
 ```ruby
-Namely::Country.find("BE")
-# => <Namely::Country id="BE", name="Belgium", subdivision_type="Province", links={"subdivisions"=>[{"id"=>"BRU", "name"=>"Brussels"}, {"id"=>"VAN", "name"=>"Antwerpen (nl)"}, {"id"=>"VBR", "name"=>"Vlaams Brabant (nl)"}, {"id"=>"VLI", "name"=>"Limburg (nl)"}, {"id"=>"VOV", "name"=>"Oost-Vlaanderen (nl)"}, {"id"=>"VWV", "name"=>"West-Vlaanderen (nl)"}, {"id"=>"WBR", "name"=>"Brabant Wallon (fr)"}, {"id"=>"WHT", "name"=>"Hainaut (fr)"}, {"id"=>"WLG", "name"=>"Liège (fr)"}, {"id"=>"WLX", "name"=>"Luxembourg (fr)"}, {"id"=>"WNA", "name"=>"Namur (fr)"}]}>
+namely.countries.find("BE")
+# => <Namely::Model id="BE", name="Belgium", subdivision_type="Province", links={"subdivisions"=>[{"id"=>"BRU", "name"=>"Brussels"}, {"id"=>"VAN", "name"=>"Antwerpen (nl)"}, {"id"=>"VBR", "name"=>"Vlaams Brabant (nl)"}, {"id"=>"VLI", "name"=>"Limburg (nl)"}, {"id"=>"VOV", "name"=>"Oost-Vlaanderen (nl)"}, {"id"=>"VWV", "name"=>"West-Vlaanderen (nl)"}, {"id"=>"WBR", "name"=>"Brabant Wallon (fr)"}, {"id"=>"WHT", "name"=>"Hainaut (fr)"}, {"id"=>"WLG", "name"=>"Liège (fr)"}, {"id"=>"WLX", "name"=>"Luxembourg (fr)"}, {"id"=>"WNA", "name"=>"Namur (fr)"}]}>
 ```
 
 ```ruby
-foo_bar = Namely::Profile.create!(
+foo_bar = namely.profiles.create!(
   first_name: "Metasyntactic",
   last_name: "Variable",
   email: "foo_bar@namely.com"
