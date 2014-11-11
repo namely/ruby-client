@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Namely::Collection do
+describe "integration tests" do
   describe "country collections" do
-    subject { collection("countries") }
+    subject { conn.countries }
 
     it_behaves_like(
       "a resource with an index action",
@@ -18,13 +18,13 @@ describe Namely::Collection do
   end
 
   describe "currency type collections" do
-    subject { collection("currency_types") }
+    subject { conn.currency_types }
 
     it_behaves_like "a resource with an index action"
   end
 
   describe "event collections" do
-    subject { collection("events") }
+    subject { conn.events }
 
     it_behaves_like "a resource with an index action", [:type]
 
@@ -36,19 +36,19 @@ describe Namely::Collection do
   end
 
   describe "field collections" do
-    subject { collection("profiles/fields") }
+    subject { conn.fields }
 
     it_behaves_like "a resource with an index action"
   end
 
   describe "job tier collections" do
-    subject { collection("job_tiers") }
+    subject { conn.job_tiers }
 
     it_behaves_like "a resource with an index action", [:title]
   end
 
   describe "profile collections" do
-    subject { collection("profiles") }
+    subject { conn.profiles }
 
     it_behaves_like(
       "a resource with an index action",
@@ -71,7 +71,7 @@ describe Namely::Collection do
   end
 
   describe "report collections" do
-    subject { collection("reports") }
+    subject { conn.reports }
 
     it_behaves_like(
       "a resource with a show action",
@@ -79,12 +79,10 @@ describe Namely::Collection do
     )
   end
 
-  def collection(endpoint)
-    gateway = Namely::ResourceGateway.new(
+  def conn
+    Namely::Connection.new(
       access_token: ENV.fetch("TEST_ACCESS_TOKEN"),
-      endpoint: endpoint,
       subdomain: ENV.fetch("TEST_SUBDOMAIN"),
     )
-    Namely::Collection.new(gateway)
   end
 end
