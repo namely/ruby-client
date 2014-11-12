@@ -18,7 +18,12 @@ module Namely
       self.id = resource_gateway.create(to_h)
       self
     rescue RestClient::Exception => e
-      raise FailedRequestError, e.message
+      errors = JSON.parse(e.response)["errors"]
+      if errors.nil?
+        raise FailedRequestError, e.message
+      else
+        raise FailedRequestError, "#{e.message}: #{errors.join(", ")}"
+      end
     end
 
     # Return true if the model exists (in some state) on the server.
