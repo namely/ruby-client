@@ -68,6 +68,12 @@ describe "integration tests" do
       last_name: "McDog",
       email: "beardsly-#{Time.now.utc.to_f}@namely.com"
     )
+
+    it_behaves_like(
+      "a resource with an update action",
+      "20332458-c1fe-412f-bcb8-01622f04a35d",
+      middle_name: "Beardsly"
+    )
   end
 
   describe "report collections" do

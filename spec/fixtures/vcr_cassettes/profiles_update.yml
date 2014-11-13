@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://<TEST_SUBDOMAIN>.namely.com/api/v1/profiles/20332458-c1fe-412f-bcb8-01622f04a35d
+    body:
+      encoding: UTF-8
+      string: '{"profiles":[{"middle_name":"Beardsly"}],"access_token":"<TEST_ACCESS_TOKEN>"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '91'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 13 Nov 2014 19:10:01 GMT
+      Server:
+      - nginx/1.6.2
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=31536000
+      - max-age=31536000; includeSubDomains;
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 7011ef77-e09c-49fe-af77-5e457db6890b
+      X-Runtime:
+      - '0.278772'
+      Content-Length:
+      - '1681'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        dr542Y/7/V/zQnK7QxEAAA==
+    http_version: 
+  recorded_at: Thu, 13 Nov 2014 19:10:01 GMT
+recorded_with: VCR 2.9.3
