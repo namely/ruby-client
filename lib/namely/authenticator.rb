@@ -116,12 +116,18 @@ module Namely
     def current_user(options)
       access_token = options.fetch(:access_token)
       subdomain = options.fetch(:subdomain)
-      response = RestClient.get(
-        "https://#{subdomain}.namely.com/api/v1/profiles/me",
-        accept: :json,
-        params: {
+
+      url_options = options.merge({
+        params:  {
           access_token: access_token,
         },
+        path: "/api/v1/profiles/me",
+      })
+      user_url = URL.new(url_options).to_s
+
+      response = RestClient.get(
+        user_url,
+        accept: :json,
       )
       build_profile(
         access_token,
