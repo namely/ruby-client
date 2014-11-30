@@ -117,13 +117,12 @@ module Namely
       access_token = options.fetch(:access_token)
       subdomain = options.fetch(:subdomain)
 
-      url_options = options.merge({
-        params:  {
+      user_url = URL.new(options.merge(
+        params: {
           access_token: access_token,
         },
         path: "/api/v1/profiles/me",
-      })
-      user_url = URL.new(url_options).to_s
+      )).to_s
 
       response = RestClient.get(
         user_url,
