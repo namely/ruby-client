@@ -91,11 +91,13 @@ started:
 
 ### Setting up a development environment
 
-The Namely gem uses [dotenv] to manage environment variables. To run
-the tests you'll need to create a `.env` file in the project's root
-directory and assign a few variables in it.
+After you have cloned this repo, run this setup script to set up your machine
+with the necessary dependencies to run and test this app:
 
-Just take this example `.env` file and plug in appropriate values:
+    % ./bin/setup
+
+The Namely gem uses [dotenv] to manage environment variables.
+Visit the `.env` file and change a plug in appropriate values:
 
 ```
 TEST_ACCESS_TOKEN=my-sample-access-token

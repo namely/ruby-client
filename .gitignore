@@ -1,3 +1,4 @@
 .env
 .yardoc
 doc
+Gemfile.lock
