@@ -57,6 +57,13 @@ module Namely
       collection("job_tiers")
     end
 
+    # Return a Collection of job titles.
+    #
+    # @return [Collection]
+    def job_titles
+      collection("job_titles")
+    end
+
     # Return a Collection of profiles.
     #
     # @return [Collection]

@@ -47,6 +47,12 @@ describe "integration tests" do
     it_behaves_like "a resource with an index action", [:title]
   end
 
+  describe "job title collections" do
+    subject { conn.job_titles }
+
+    it_behaves_like "a resource with an index action", [:title]
+  end
+
   describe "profile collections" do
     subject { conn.profiles }
 
