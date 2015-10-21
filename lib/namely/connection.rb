@@ -68,7 +68,7 @@ module Namely
     #
     # @return [Collection]
     def profiles
-      collection("profiles")
+      collection("profiles", paged: true)
     end
 
     # Return a Collection of reports.
@@ -82,16 +82,16 @@ module Namely
 
     attr_reader :access_token, :subdomain
 
-    def collection(endpoint)
-      Namely::Collection.new(gateway(endpoint))
+    def collection(endpoint, options = {})
+      Namely::Collection.new(gateway(endpoint, options))
     end
 
-    def gateway(endpoint)
-      ResourceGateway.new(
+    def gateway(endpoint, options = {})
+      ResourceGateway.new(options.merge(
         access_token: access_token,
         endpoint: endpoint,
         subdomain: subdomain,
-      )
+      ))
     end
   end
 end
