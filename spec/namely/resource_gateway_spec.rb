@@ -43,6 +43,37 @@ describe Namely::ResourceGateway do
 
       expect(gateway.json_index).to eq ["woo!"]
     end
+
+    context "for paged resources" do
+      def gateway
+        @gateway ||= Namely::ResourceGateway.new(
+          access_token: access_token,
+          endpoint: "widgets",
+          resource_name: "widgets",
+          subdomain: subdomain,
+          paged: true
+        )
+      end
+
+      it "emits an enumerator that represents all paged items" do
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token }).
+          to_return(body: { widgets: [ id: "123-456" ] }.to_json)
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token, after: "123-456" }).
+          to_return(body: { widgets: [ id: "456-789" ] }.to_json)
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token, after: "456-789" }).
+          to_return(body: { widgets: [ ] }.to_json)
+
+        expect(gateway.json_index).to be_kind_of(Enumerator)
+        ids = gateway.json_index.map { |h| h['id'] }
+
+        expect(ids).to eq(['123-456', '456-789'])
+      end
+    end
   end
 
   describe "#json_show" do
