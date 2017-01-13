@@ -8,7 +8,7 @@ require "dotenv"
 require "vcr"
 require "webmock/rspec"
 
-Dotenv.load
+Dotenv.load(".env.test")
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
