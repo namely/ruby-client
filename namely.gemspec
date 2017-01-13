@@ -6,8 +6,8 @@ require "namely/version"
 Gem::Specification.new do |spec|
   spec.name          = "namely"
   spec.version       = Namely::VERSION
-  spec.authors       = ["Harry Schwartz"]
-  spec.email         = ["harry@thoughtbot.com"]
+  spec.authors       = ["Namely Integrations Team"]
+  spec.email         = ["integrations-dev@namely.com"]
   spec.summary       = "Wraps the Namely HTTP API in lovely Ruby."
   spec.homepage      = "https://github.com/namely/ruby-client"
   spec.license       = "MIT"
