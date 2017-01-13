@@ -41,7 +41,7 @@ module Namely
 
     def json_index_paged
       Enumerator.new do |y|
-        params = {}
+        params = { limit: Namely.configuration.limit }
 
         loop do
           objects = get("/#{endpoint}", params)[resource_name]

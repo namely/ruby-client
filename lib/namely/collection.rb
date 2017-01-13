@@ -17,6 +17,10 @@ module Namely
       resource_gateway.json_index.map { |model| build(model) }
     end
 
+    def raw_all
+      resource_gateway.json_index
+    end
+
     # Instantiate (but don't save) a new Model with the given attributes.
     #
     # @param [Hash] attributes the attributes of the model being built.
