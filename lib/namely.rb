@@ -1,4 +1,3 @@
-require "backports"
 require "json"
 require "ostruct"
 require "rest_client"
