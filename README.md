@@ -118,7 +118,7 @@ page of the site.
 5. Create a new pull request. We'll review it and leave feedback for
    you ASAP.
 
-[Namely's HTTP API]: http://namely.readme.io/v1/docs
+[Namely's HTTP API]: https://developers.namely.com
 [thoughtbot's style guide]: https://github.com/thoughtbot/guides/tree/master/style
 [JSON API standard]: http://jsonapi.org/
 [dotenv]: https://github.com/bkeepers/dotenv
