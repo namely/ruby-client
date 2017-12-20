@@ -74,8 +74,13 @@ module Namely
     end
 
     def get(path, params = {})
+      retries ||= 0
       params.merge!(access_token: access_token)
       JSON.parse(RestClient.get(url(path), accept: :json, params: params))
+
+    rescue RestClient::GatewayTimeout
+      retry if (retries += 1) < 3
+      raise
     end
 
     def head(path, params = {})

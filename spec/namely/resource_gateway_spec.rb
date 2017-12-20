@@ -73,6 +73,32 @@ describe Namely::ResourceGateway do
 
         expect(ids).to eq(['123-456', '456-789'])
       end
+
+      it "makes 3 attempts if the api returns a timeout" do
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token }).to_return(status:504).times(2).
+          then.to_return(body: { widgets: [ id: "123-456" ] }.to_json)
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token, after: "123-456" }).
+          to_return(body: { widgets: [ id: "456-789" ] }.to_json)
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token, after: "456-789" }).
+          to_return(body: { widgets: [ ] }.to_json)
+
+        ids = gateway.json_index.map { |h| h['id'] }
+
+        expect(ids).to eq(['123-456', '456-789'])
+      end
+
+      it "raises a timeout exception if it times out more that 3 times" do
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token }).to_return(status: 504)
+
+        expect { gateway.json_index.map { |h| h['id'] } }.
+          to raise_error(RestClient::GatewayTimeout)
+      end
     end
   end
 
