@@ -44,7 +44,7 @@ module Namely
         params = {}
 
         loop do
-          objects = get("/#{endpoint}", params)[resource_name]
+          objects = with_retry { get("/#{endpoint}", params)[resource_name] }
           break if objects.empty?
 
           objects.each { |o| y << o }
@@ -71,6 +71,15 @@ module Namely
         FailedRequestError,
         "Couldn't parse \"id\" from response: #{e.message}"
       )
+    end
+
+    def with_retry
+      retries ||= 0
+      yield
+    rescue RestClient::Exception => e
+      raise unless Namely.configuration.http_codes_to_retry.include?(e.http_code)
+      retry if (retries += 1) < Namely.configuration.retries
+      raise
     end
 
     def get(path, params = {})

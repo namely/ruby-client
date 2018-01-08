@@ -73,6 +73,38 @@ describe Namely::ResourceGateway do
 
         expect(ids).to eq(['123-456', '456-789'])
       end
+
+      it "retries http failures given the configured codes and number of retries" do
+        Namely.configuration.retries = 3
+        Namely.configuration.http_codes_to_retry = [504]
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token }).to_return(status:504).times(2).
+          then.to_return(body: { widgets: [ id: "123-456" ] }.to_json)
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token, after: "123-456" }).
+          to_return(body: { widgets: [ id: "456-789" ] }.to_json)
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token, after: "456-789" }).
+          to_return(body: { widgets: [ ] }.to_json)
+
+        ids = gateway.json_index.map { |h| h['id'] }
+
+        expect(ids).to eq(['123-456', '456-789'])
+      end
+
+      it "raises an exception if exceeds configured retry number" do
+        Namely.configuration.retries = 3
+        Namely.configuration.http_codes_to_retry = [504]
+
+        stub_request(:get, "https://#{subdomain}.namely.com/api/v1/widgets").
+          with(query: { access_token: access_token }).to_return(status: 504)
+
+        expect { gateway.json_index.map { |h| h['id'] } }.
+          to raise_error(RestClient::GatewayTimeout)
+      end
     end
   end
 
