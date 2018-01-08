@@ -44,7 +44,7 @@ module Namely
         params = {}
 
         loop do
-          objects = get("/#{endpoint}", params)[resource_name]
+          objects = with_retry { get("/#{endpoint}", params)[resource_name] }
           break if objects.empty?
 
           objects.each { |o| y << o }
@@ -73,14 +73,18 @@ module Namely
       )
     end
 
-    def get(path, params = {})
+    def with_retry
       retries ||= 0
+      yield
+    rescue RestClient::Exception => e
+      raise unless Namely.configuration.http_codes_to_retry.include?(e.http_code)
+      retry if (retries += 1) < Namely.configuration.retries
+      raise
+    end
+
+    def get(path, params = {})
       params.merge!(access_token: access_token)
       JSON.parse(RestClient.get(url(path), accept: :json, params: params))
-
-    rescue RestClient::GatewayTimeout
-      retry if (retries += 1) < 3
-      raise
     end
 
     def head(path, params = {})

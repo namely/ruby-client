@@ -2,6 +2,7 @@ require "json"
 require "ostruct"
 require "rest_client"
 
+require "namely/configuration"
 require "namely/authenticator"
 require "namely/exceptions"
 require "namely/resource_gateway"

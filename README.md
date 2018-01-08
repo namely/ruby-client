@@ -41,6 +41,22 @@ Namely associates a subdomain with your organization. For example, if
 your account is at `http://your-organization.namely.com/`, your
 subdomain would be `"your-organization"`.
 
+## Configuration
+
+You can override default configuration using `Namely.configuration` like:
+
+```Ruby
+Namely.configuration do |config|
+
+  # While returning paged results, which http codes should be rescued and
+  # retried? Defaults to none.
+  config.http_codes_to_retry = [504] # gateway timeout
+
+  # The number of times to retry the requests rescued above. Default is 0
+  config.retries = 2
+end
+```
+
 ## Usage Examples
 
 Once you've created a connection you can use it to access your data.
