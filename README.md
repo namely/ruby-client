@@ -46,7 +46,7 @@ subdomain would be `"your-organization"`.
 You can override default configuration using `Namely.configuration` like:
 
 ```Ruby
-Namely.configuration do |config|
+Namely.configure do |config|
 
   # While returning paged results, which http codes should be rescued and
   # retried? Defaults to none.
