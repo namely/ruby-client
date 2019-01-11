@@ -83,32 +83,30 @@ module Namely
     end
 
     def get(path, params = {})
-      params.merge!(access_token: access_token)
-      JSON.parse(RestClient.get(url(path), accept: :json, params: params))
+      JSON.parse(RestClient.get(url(path), accept: :json, params: params, authorization: "Bearer #{access_token}"))
     end
 
     def head(path, params = {})
-      params.merge!(access_token: access_token)
-      RestClient.head(url(path), accept: :json, params: params)
+      RestClient.head(url(path), accept: :json, params: params, authorization: "Bearer #{access_token}")
     end
 
     def post(path, params)
-      params.merge!(access_token: access_token)
       RestClient.post(
         url(path),
         params.to_json,
         accept: :json,
         content_type: :json,
+        authorization: "Bearer #{access_token}"
       )
     end
 
     def put(path, params)
-      params.merge!(access_token: access_token)
       RestClient.put(
         url(path),
         params.to_json,
         accept: :json,
-        content_type: :json
+        content_type: :json,
+        authorization: "Bearer #{access_token}"
       )
     end
   end
