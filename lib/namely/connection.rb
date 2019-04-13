@@ -77,14 +77,16 @@ module Namely
     def reports
       collection("reports")
     end
+    
+    
+    def collection(endpoint, options = {})
+      Namely::Collection.new(gateway(endpoint, options))
+    end
+
 
     private
 
     attr_reader :access_token, :subdomain
-
-    def collection(endpoint, options = {})
-      Namely::Collection.new(gateway(endpoint, options))
-    end
 
     def gateway(endpoint, options = {})
       ResourceGateway.new(options.merge(
