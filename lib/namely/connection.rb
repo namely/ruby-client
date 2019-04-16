@@ -54,6 +54,13 @@ module Namely
     #
     # @return [Collection]
     def job_tiers
+      collection("group_types")
+    end
+
+    # Return a Collection of job tiers.
+    #
+    # @return [Collection]
+    def job_tiers
       collection("job_tiers")
     end
 
