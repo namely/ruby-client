@@ -53,7 +53,7 @@ module Namely
     # Return a Collection of job tiers.
     #
     # @return [Collection]
-    def job_tiers
+    def group_types
       collection("group_types")
     end
 
@@ -84,12 +84,10 @@ module Namely
     def reports
       collection("reports")
     end
-    
-    
+
     def collection(endpoint, options = {})
       Namely::Collection.new(gateway(endpoint, options))
     end
-
 
     private
 

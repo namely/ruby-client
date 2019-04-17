@@ -13,6 +13,10 @@ module Namely
       paged ? json_index_paged : json_index_all
     end
 
+    def json_find_from(id, find_from)
+      get("/#{endpoint}/#{id}/#{find_from}")[find_from]
+    end
+
     def json_show(id)
       get("/#{endpoint}/#{id}")[resource_name].first
     end
