@@ -53,6 +53,13 @@ module Namely
     # Return a Collection of job tiers.
     #
     # @return [Collection]
+    def group_types
+      collection("group_types")
+    end
+
+    # Return a Collection of job tiers.
+    #
+    # @return [Collection]
     def job_tiers
       collection("job_tiers")
     end
@@ -78,13 +85,13 @@ module Namely
       collection("reports")
     end
 
-    private
-
-    attr_reader :access_token, :subdomain
-
     def collection(endpoint, options = {})
       Namely::Collection.new(gateway(endpoint, options))
     end
+
+    private
+
+    attr_reader :access_token, :subdomain
 
     def gateway(endpoint, options = {})
       ResourceGateway.new(options.merge(
