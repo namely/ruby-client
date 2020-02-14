@@ -55,7 +55,14 @@ module Namely
     end
 
     attr_reader :access_token, :subdomain, :paged
-
+    
+    def default_headers
+      { 
+        accept: :json,
+        authorization: "Bearer #{access_token}" 
+       }
+    end
+ 
     def resource_name
       endpoint.split("/").last
     end
@@ -82,31 +89,31 @@ module Namely
       raise
     end
 
-    def get(path, params = {})
-      JSON.parse(RestClient.get(url(path), accept: :json, params: params, authorization: "Bearer #{access_token}"))
+    def get(path, params = {}, headers: {})
+      headers = default_headers.merge(headers)
+      JSON.parse(RestClient.get(url(path), params: params, **headers))
     end
 
-    def head(path, params = {})
-      RestClient.head(url(path), accept: :json, params: params, authorization: "Bearer #{access_token}")
+    def head(path, params = {}, headers: {})
+      headers = default_headers.merge(headers)
+      RestClient.head(url(path), params: params, **headers)
     end
 
-    def post(path, params)
+    def post(path, params, headers: {})
+      headers = default_headers.merge(content_type: :json).merge(headers)
       RestClient.post(
         url(path),
         params.to_json,
-        accept: :json,
-        content_type: :json,
-        authorization: "Bearer #{access_token}"
+        **headers
       )
     end
 
-    def put(path, params)
+    def put(path, params, headers={})
+      headers = default_headers.merge(content_type: :json).merge(headers)
       RestClient.put(
         url(path),
         params.to_json,
-        accept: :json,
-        content_type: :json,
-        authorization: "Bearer #{access_token}"
+        **headers
       )
     end
   end
