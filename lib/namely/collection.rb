@@ -71,6 +71,12 @@ module Namely
       raise NoSuchModelError, "Can't find any #{endpoint} with id \"#{id}\""
     end
 
+    def find_from(id, find_from=nil)
+      resource_gateway.json_find_from(id, find_from).map { |model| build(model) }
+    rescue RestClient::ResourceNotFound
+      raise NoSuchModelError, "Can't find any #{endpoint} with id \"#{id}\""
+    end
+
     private
 
     attr_reader :resource_gateway

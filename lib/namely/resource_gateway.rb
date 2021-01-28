@@ -13,6 +13,10 @@ module Namely
       paged ? json_index_paged : json_index_all
     end
 
+    def json_find_from(id, find_from)
+      get("/#{endpoint}/#{id}/#{find_from}")[find_from]
+    end
+
     def json_show(id)
       get("/#{endpoint}/#{id}")[resource_name].first
     end
@@ -40,16 +44,19 @@ module Namely
     end
 
     def json_index_paged
+      last_id = nil
       Enumerator.new do |y|
         params = {}
 
         loop do
           objects = with_retry { get("/#{endpoint}", params)[resource_name] }
           break if objects.empty?
+          break if last_id == objects.last['id']
 
           objects.each { |o| y << o }
+          last_id = objects.last['id']
 
-          params[:after] = objects.last["id"]
+          params[:after] = last_id
         end
       end
     end
@@ -65,7 +72,7 @@ module Namely
     end
 
     def extract_id(response)
-      JSON.parse(response)[endpoint].first["id"]
+      JSON.parse(response)[endpoint].first['id']
     rescue StandardError => e
       raise(
         FailedRequestError,
@@ -78,6 +85,7 @@ module Namely
       yield
     rescue RestClient::Exception => e
       raise unless Namely.configuration.http_codes_to_retry.include?(e.http_code)
+
       retry if (retries += 1) < Namely.configuration.retries
       raise
     end

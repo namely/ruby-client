@@ -8,8 +8,8 @@ module Namely
     #
     # @example
     #   Namely.configure do |config|
-    #     config.access_token = "your_access_token"
-    #     config.subdomain = "your-organization"
+    #     config.access_token = 'your_access_token'
+    #     config.subdomain = 'your-organization'
     #   end
     #
     # @raise [KeyError] if access_token and subdomain aren't provided.
@@ -19,63 +19,75 @@ module Namely
       @access_token = options.fetch(:access_token)
       @subdomain = options.fetch(:subdomain)
     rescue KeyError
-      raise ArgumentError, "Please supply an access_token and subdomain."
+      raise ArgumentError, 'Please supply an access_token and subdomain.'
     end
 
     # Return a Collection of countries.
     #
     # @return [Collection]
     def countries
-      collection("countries")
+      collection('countries')
     end
 
     # Return a Collection of currency types.
     #
     # @return [Collection]
     def currency_types
-      collection("currency_types")
+      collection('currency_types')
     end
 
     # Return a Collection of countries.
     #
     # @return [Collection]
     def events
-      collection("events")
+      collection('events')
     end
 
     # Return a Collection of profile fields.
     #
     # @return [Collection]
     def fields
-      collection("profiles/fields")
+      collection('profiles/fields')
     end
 
     # Return a Collection of job tiers.
     #
     # @return [Collection]
     def job_tiers
-      collection("job_tiers")
+      collection('job_tiers')
     end
 
     # Return a Collection of job titles.
     #
     # @return [Collection]
     def job_titles
-      collection("job_titles")
+      collection('job_titles')
     end
 
     # Return a Collection of profiles.
     #
     # @return [Collection]
     def profiles
-      collection("profiles", paged: true)
+      collection('profiles', paged: true)
     end
 
     # Return a Collection of reports.
     #
     # @return [Collection]
     def reports
-      collection("reports")
+      collection('reports')
+    end
+
+    def group_types
+      collection('group_types')
+    end
+
+    def groups
+      collection('groups', paged: true)
+    end
+
+    def groups_by_group_type(group_type_id)
+      group_types.find_from(group_type_id, 'groups')
     end
 
     private
@@ -90,7 +102,7 @@ module Namely
       ResourceGateway.new(options.merge(
         access_token: access_token,
         endpoint: endpoint,
-        subdomain: subdomain,
+        subdomain: subdomain
       ))
     end
   end
