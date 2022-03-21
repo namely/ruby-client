@@ -1,5 +1,7 @@
 # Namely
-
+ 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/32905cacc6d74067b3319a5d477af845)](https://app.codacy.com/gh/namely/ruby-client/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/32905cacc6d74067b3319a5d477af845)](https://app.codacy.com/gh/namely/ruby-client/dashboard)
 [![Travis](https://travis-ci.org/namely/ruby-client.svg?branch=master)](https://travis-ci.org/namely/ruby-client/builds)
 [![Code Climate](https://codeclimate.com/github/namely/ruby-client/badges/gpa.svg)](https://codeclimate.com/github/namely/ruby-client)
 
